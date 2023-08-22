@@ -4,17 +4,15 @@ import mysql.connector
 import re
 from sklearn import tree
 cnx = mysql.connector.connect(user='root',
-                              password='09109534220',
+                              password='',
                               database='truecar')
 cursor = cnx.cursor()
-first_query = 'CREATE TABLE cars (price VARCHAR(20), miles VARCHAR(20), Year VARCHAR(20))'
+first_query = 'CREATE TABLE cars (price VARCHAR(30), miles VARCHAR(30), Year VARCHAR(30))'
 cursor.execute(first_query)
 cnx.commit()
 
 car_name = input('enter car name :')
 car_name = re.sub(r' ', '/', car_name)
-car_name = re.sub(r'-', '/', car_name)
-
 
 for number in range(1, 11):
     req = requests.get(f'https://www.truecar.com/used-cars-for-sale/listings/{car_name}/?page={number}')
